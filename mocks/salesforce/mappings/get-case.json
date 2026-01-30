@@ -1,0 +1,24 @@
+{
+  "request": {
+    "method": "GET",
+    "urlPattern": "/services/data/.*/sobjects/Case/.*"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "Id": "500xx000000bKAAA2",
+      "CaseNumber": "00001234",
+      "Subject": "Caso de teste",
+      "Description": "Descrição do caso de teste",
+      "Status": "Novo",
+      "Priority": "Média",
+      "Type": "Reclamação",
+      "Origin": "App VIVO",
+      "CreatedDate": "2026-01-29T10:00:00.000+0000",
+      "LastModifiedDate": "2026-01-29T10:00:00.000+0000"
+    }
+  }
+}

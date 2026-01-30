@@ -1,0 +1,22 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/api/v2/routing/conversations"
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "conv-12345-abcde",
+      "state": "queued",
+      "queue": {
+        "id": "queue-financeiro-n2",
+        "name": "Financeiro N2"
+      },
+      "participants": [],
+      "createdDate": "2026-01-29T10:00:00.000Z"
+    }
+  }
+}

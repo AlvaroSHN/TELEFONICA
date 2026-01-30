@@ -1,0 +1,9 @@
+{
+  "request": {
+    "method": "PATCH",
+    "urlPattern": "/services/data/.*/sobjects/Case/.*"
+  },
+  "response": {
+    "status": 204
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "request": {
+    "method": "POST",
+    "urlPattern": "/services/data/.*/sobjects/Case"
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "jsonBody": {
+      "id": "500xx000000{{randomValue length=7 type='ALPHANUMERIC'}}",
+      "success": true,
+      "errors": []
+    },
+    "transformers": ["response-template"]
+  }
+}

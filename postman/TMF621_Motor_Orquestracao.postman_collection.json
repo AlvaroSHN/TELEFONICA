@@ -1,0 +1,149 @@
+{
+  "info": {
+    "_postman_id": "motor-orquestracao-vivo",
+    "name": "TMF621 Motor de Orquestração - VIVO",
+    "description": "Coleção de testes para o Motor de Orquestração de Casos da VIVO, seguindo o padrão TMF621 (Trouble Ticket).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:8080",
+      "type": "string"
+    },
+    {
+      "key": "apiPath",
+      "value": "/tmf-api/troubleTicket/v4",
+      "type": "string"
+    }
+  ],
+  "item": [
+    {
+      "name": "1. Criar Ticket - App VIVO",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Problema com fatura\",\n  \"description\": \"Minha fatura deste mês veio com o dobro do valor esperado.\",\n  \"ticketType\": \"Reclamação\",\n  \"priority\": \"High\",\n  \"severity\": \"Major\",\n  \"channel\": {\n    \"id\": \"app\",\n    \"name\": \"Aplicativo VIVO\"\n  },\n  \"relatedParty\": [\n    {\n      \"@referredType\": \"Contact\",\n      \"id\": \"003xx000004TmiAAE\",\n      \"name\": \"João Silva\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}{{apiPath}}/troubleTicket",
+          "host": ["{{baseUrl}}{{apiPath}}"],
+          "path": ["troubleTicket"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "2. Criar Ticket com Campos Customizados",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"name\": \"Cobrança indevida de serviço\",\n  \"description\": \"Estou sendo cobrado por um serviço que não contratei.\",\n  \"ticketType\": \"Reclamação\",\n  \"priority\": \"Critical\",\n  \"severity\": \"Critical\",\n  \"channel\": {\n    \"id\": \"whatsapp\",\n    \"name\": \"WhatsApp\"\n  },\n  \"relatedParty\": [\n    {\n      \"@referredType\": \"Contact\",\n      \"id\": \"003xx000004TmiAAE\",\n      \"name\": \"Maria Santos\"\n    }\n  ],\n  \"ticketCharacteristic\": [\n    {\n      \"name\": \"NumeroContrato\",\n      \"value\": \"CTR-987654\"\n    },\n    {\n      \"name\": \"ValorContestado\",\n      \"value\": \"R$ 150,00\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}{{apiPath}}/troubleTicket",
+          "host": ["{{baseUrl}}{{apiPath}}"],
+          "path": ["troubleTicket"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "3. Listar Todos os Tickets",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}{{apiPath}}/troubleTicket",
+          "host": ["{{baseUrl}}{{apiPath}}"],
+          "path": ["troubleTicket"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "4. Buscar Ticket por ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}{{apiPath}}/troubleTicket/VIVO-1234567890",
+          "host": ["{{baseUrl}}{{apiPath}}"],
+          "path": ["troubleTicket", "VIVO-1234567890"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "5. Atualizar Status do Ticket",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"inProgress\",\n  \"note\": [\n    {\n      \"text\": \"Ticket atribuído ao agente para análise.\",\n      \"author\": \"Sistema\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}{{apiPath}}/troubleTicket/VIVO-1234567890",
+          "host": ["{{baseUrl}}{{apiPath}}"],
+          "path": ["troubleTicket", "VIVO-1234567890"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "6. Resolver Ticket",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"status\": \"resolved\",\n  \"resolution\": \"Cobrança estornada. Valor será creditado na próxima fatura.\",\n  \"note\": [\n    {\n      \"text\": \"Problema resolvido conforme solicitação do cliente.\",\n      \"author\": \"agent@vivo.com\"\n    }\n  ]\n}"
+        },
+        "url": {
+          "raw": "{{baseUrl}}{{apiPath}}/troubleTicket/VIVO-1234567890",
+          "host": ["{{baseUrl}}{{apiPath}}"],
+          "path": ["troubleTicket", "VIVO-1234567890"]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "7. Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/actuator/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["actuator", "health"]
+        }
+      },
+      "response": []
+    }
+  ]
+}
